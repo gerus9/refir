@@ -21,6 +21,9 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginLeft="10dp"
+			android:maxLines="1"
+			android:imeOptions="actionNext"
+			android:singleLine="true"
 			android:hint="@string/hint_name"
 			android:maxLength="@integer/maxLength" />
 
@@ -41,6 +44,9 @@
 			android:id="@+id/weight"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:maxLines="1"
+			android:imeOptions="actionNext"
+			android:singleLine="true"
 			android:layout_marginLeft="10dp"
 			android:hint="@string/hint_weight"
 			android:maxLength="@integer/maxLength" />
@@ -61,6 +67,8 @@
 		<androidx.appcompat.widget.AppCompatTextView
 			android:id="@+id/calendar"
 			android:layout_width="match_parent"
+			android:focusableInTouchMode="true"
+			android:cursorVisible="false"
 			style="@style/Widget.AppCompat.EditText"
 			android:layout_height="wrap_content"
 			android:layout_marginLeft="10dp"
