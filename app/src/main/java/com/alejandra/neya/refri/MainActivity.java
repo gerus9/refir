@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements ItemCallback {
 	private List<Item> itemList;
 	private final int RESULT_ADD = 50;
 	private final int RESULT_REMOVE = 60;
+	private DataHelper dbHelper;
 
 	// Permite ver archivos svg
 	static {
@@ -48,7 +49,8 @@ public class MainActivity extends AppCompatActivity implements ItemCallback {
 			}
 		});
 
-		itemList = new ArrayList<>();
+		dbHelper = new DataHelper(this);
+		itemList = dbHelper.getListItems();
 		setValueRecyclerView();
 	}
 
@@ -61,13 +63,21 @@ public class MainActivity extends AppCompatActivity implements ItemCallback {
 				switch (requestCode) {
 					case RESULT_ADD:
 						adapter.addItem(item);
+						dbHelper.insert(item);
 						break;
 					case RESULT_REMOVE:
 						adapter.removeItem(item);
+						dbHelper.remove(item);
 						break;
 				}
 			}
 		}
+	}
+
+	@Override
+	protected void onDestroy() {
+		dbHelper.close();
+		super.onDestroy();
 	}
 
 	private void addNewItem() {
